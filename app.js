@@ -85,7 +85,7 @@ function updateTotals() {
     let sum = 0;
     document
       .querySelectorAll(`#rounds tr td:nth-child(${i + 2}) input`)
-      .forEach(inp => sum += Number(inp.value));
+      .forEach(inp => sum += Number(inp.value || 0));
     document.getElementById(`total-${p}`).innerText = sum;
   });
 }
