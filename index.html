@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>UNO Scoreboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<<h1>UNO Scoreboard</h1>
+
+<body>
+
+<h1>UNO Scoreboard</h1>
 
 <!-- SETUP SCREEN -->
 <div id="setup">
   <h2>Enter Player Names</h2>
   <div id="playerInputs"></div>
-  <button onclick="addPlayerInput()">Add Player</button>
-  <button onclick="startGame()">Start Game</button>
+  <button id="addPlayerBtn">Add Player</button>
+  <button id="startGameBtn">Start Game</button>
 </div>
 
 <!-- GAME SCREEN -->
@@ -30,43 +34,14 @@
     </tfoot>
   </table>
 
-  <button onclick="addRound()">Add Round</button>
-  <button onclick="finishGame()">Finish Game</button>
-  <button onclick="resetGame()">Reset Game</button>
+  <button id="addRoundBtn">Add Round</button>
+  <button id="finishGameBtn">Finish Game</button>
+  <button id="resetGameBtn">Reset Game</button>
 
   <div id="leaderboard"></div>
 </div>
->
 
-<h1>UNO Scoreboard</h1>
-
-<table id="scoreTable">
-  <thead>
-    <tr id="playerRow">
-      <th>Round</th>
-    </tr>
-  </thead>
-  <tbody id="rounds"></tbody>
-  <tfoot>
-    <tr id="totals">
-      <th>TOTAL</th>
-    </tr>
-  </tfoot>
-</table>
-
-<button onclick="addRound()">Add Round</button>
-<button onclick="addPlayer()">Add Player</button>
-<button onclick="finishGame()">Finish Game</button>
-<button onclick="resetGame()">Reset Game</button>
-
-<div id="leaderboard"></div>
-
-
-<button onclick="addRound()">Add Round</button>
-<button onclick="finishGame()">Finish Game</button>
-
-<div id="leaderboard"></div>
-
+<!-- IMPORTANT: JS LOADS LAST -->
 <script src="app.js"></script>
 </body>
 </html>
