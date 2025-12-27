@@ -71,7 +71,7 @@ function addRound() {
     const input = document.createElement("input");
     input.type = "number";
     input.min = 0;
-    input.value = "";
+    input.value = "0";
     input.oninput = updateTotals;
     td.appendChild(input);
     tr.appendChild(td);
