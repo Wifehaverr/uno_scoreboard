@@ -82,7 +82,7 @@ function addRound() {
 
 function updateTotals() {
   players.forEach((p, i) => {
-    let sum = 0;
+    let sum = "";
     document
       .querySelectorAll(`#rounds tr td:nth-child(${i + 2}) input`)
       .forEach(inp => sum += Number(inp.value || 0));
