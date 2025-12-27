@@ -1,6 +1,7 @@
 let players = [];
 let finished = false;
 
+// DOM refs (safe because script loads last)
 const setupDiv = document.getElementById("setup");
 const gameDiv = document.getElementById("game");
 const playerInputsDiv = document.getElementById("playerInputs");
@@ -9,6 +10,13 @@ const tableHead = document.getElementById("playerRow");
 const roundsBody = document.getElementById("rounds");
 const totalsRow = document.getElementById("totals");
 const leaderboardDiv = document.getElementById("leaderboard");
+
+// Buttons
+document.getElementById("addPlayerBtn").onclick = addPlayerInput;
+document.getElementById("startGameBtn").onclick = startGame;
+document.getElementById("addRoundBtn").onclick = addRound;
+document.getElementById("finishGameBtn").onclick = finishGame;
+document.getElementById("resetGameBtn").onclick = resetGame;
 
 /* ---------- SETUP ---------- */
 
@@ -36,7 +44,7 @@ function startGame() {
   renderTotals();
 }
 
-/* ---------- GAME UI ---------- */
+/* ---------- GAME ---------- */
 
 function renderHeader() {
   tableHead.innerHTML = "<th>Round</th>";
@@ -115,4 +123,3 @@ function resetGame() {
   gameDiv.style.display = "none";
   setupDiv.style.display = "block";
 }
-
