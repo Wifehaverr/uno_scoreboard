@@ -71,7 +71,7 @@ function addRound() {
     const input = document.createElement("input");
     input.type = "number";
     input.min = 0;
-    input.value = "0";
+    input.value = 0;
     input.oninput = updateTotals;
     td.appendChild(input);
     tr.appendChild(td);
@@ -82,7 +82,7 @@ function addRound() {
 
 function updateTotals() {
   players.forEach((p, i) => {
-    let sum = "0";
+    let sum = 0;
     document
       .querySelectorAll(`#rounds tr td:nth-child(${i + 2}) input`)
       .forEach(inp => sum += Number(inp.value || 0));
