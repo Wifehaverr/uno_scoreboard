@@ -5,22 +5,63 @@ let finished = false;
 const tableHead = document.getElementById("playerRow");
 const roundsBody = document.getElementById("rounds");
 const totalsRow = document.getElementById("totals");
+const leaderboardDiv = document.getElementById("leaderboard");
 
 function init() {
+  renderHeader();
+  renderTotals();
+}
+
+function renderHeader() {
+  tableHead.innerHTML = "<th>Round</th>";
+  players.forEach((p, i) => {
+    tableHead.innerHTML += `
+      <th>
+        <input value="${p}" onchange="renamePlayer(${i}, this.value)">
+      </th>`;
+  });
+}
+
+function renderTotals() {
+  totalsRow.innerHTML = "<th>TOTAL</th>";
   players.forEach(p => {
-    tableHead.innerHTML += `<th>${p}</th>`;
     totalsRow.innerHTML += `<td id="total-${p}">0</td>`;
+  });
+}
+
+function renamePlayer(index, name) {
+  players[index] = name;
+  updateTotals();
+}
+
+function addPlayer() {
+  if (finished) return;
+
+  const name = `Player ${players.length + 1}`;
+  players.push(name);
+
+  renderHeader();
+  renderTotals();
+
+  document.querySelectorAll("#rounds tr").forEach(tr => {
+    const td = document.createElement("td");
+    const input = document.createElement("input");
+    input.type = "number";
+    input.min = 0;
+    input.value = 0;
+    input.oninput = updateTotals;
+    td.appendChild(input);
+    tr.appendChild(td);
   });
 }
 
 function addRound() {
   if (finished) return;
 
-  const roundIndex = rounds.length + 1;
   const tr = document.createElement("tr");
-  tr.innerHTML = `<td>${roundIndex}</td>`;
+  tr.innerHTML = `<td>${roundsBody.children.length + 1}</td>`;
 
-  players.forEach(p => {
+  players.forEach(() => {
     const td = document.createElement("td");
     const input = document.createElement("input");
     input.type = "number";
@@ -37,7 +78,8 @@ function addRound() {
 function updateTotals() {
   players.forEach((p, i) => {
     let sum = 0;
-    document.querySelectorAll(`#rounds tr td:nth-child(${i + 2}) input`)
+    document
+      .querySelectorAll(`#rounds tr td:nth-child(${i + 2}) input`)
       .forEach(inp => sum += Number(inp.value));
     document.getElementById(`total-${p}`).innerText = sum;
   });
@@ -57,12 +99,19 @@ function showLeaderboard() {
 
   scores.sort((a, b) => a.score - b.score);
 
-  const lb = document.getElementById("leaderboard");
-  lb.innerHTML = "<h2>Leaderboard</h2>";
-
+  leaderboardDiv.innerHTML = "<h2>Leaderboard</h2>";
   scores.forEach((p, i) => {
-    lb.innerHTML += `<p>${i + 1}. ${p.name} — ${p.score}</p>`;
+    leaderboardDiv.innerHTML += `<p>${i + 1}. ${p.name} — ${p.score}</p>`;
   });
+}
+
+function resetGame() {
+  finished = false;
+  roundsBody.innerHTML = "";
+  leaderboardDiv.innerHTML = "";
+  document.querySelectorAll("input").forEach(i => i.disabled = false);
+  renderHeader();
+  renderTotals();
 }
 
 init();
