@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UNO Scoreboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<!-- SETUP SCREEN -->
+<div id="setup">
+  <h1>UNO Scoreboard</h1>
+  <h2>Enter Player Names</h2>
+  <div id="playerInputs"></div>
+  <button id="addPlayerBtn">Add Player</button>
+  <button id="startGameBtn">Start Game</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game" style="display:none;">
+  <table id="scoreTable">
+    <thead>
+      <tr id="playerRow">
+        <th>Round</th>
+      </tr>
+    </thead>
+    <tbody id="rounds"></tbody>
+    <tfoot>
+      <tr id="totals">
+        <th>TOTAL</th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <button id="addRoundBtn">Add Round</button>
+  <button id="finishGameBtn">Finish Game</button>
+  <button id="resetGameBtn">Reset Game</button>
+
+  <div id="leaderboard"></div>
+</div>
+
+<script>
+  console.log("INLINE JS WORKS");
+</script>
+
+<!-- FINISH OVERLAY -->
+<div id="finishOverlay">
+  <div class="finish-card">
+    <div class="finish-left">
+      <img src="4x1.avif" alt="Well done 👍">
+      <button id="overlayResetBtn">Reset Game</button>
+    </div>
+
+    <div class="finish-right">
+      <h2>Leaderboard</h2>
+      <div id="overlayLeaderboard"></div>
+      <p class="good-boy">good boy</p>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+<script src="app.js" defer></script>
+
