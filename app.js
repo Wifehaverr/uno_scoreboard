@@ -123,3 +123,4 @@ function resetGame() {
   gameDiv.style.display = "none";
   setupDiv.style.display = "block";
 }
+console.log("JS LOADED");
