@@ -1,24 +1,47 @@
-let players = ["Anos", "Alex", "Rahul", "Sara"];
-let rounds = [];
+let players = [];
 let finished = false;
+
+const setupDiv = document.getElementById("setup");
+const gameDiv = document.getElementById("game");
+const playerInputsDiv = document.getElementById("playerInputs");
 
 const tableHead = document.getElementById("playerRow");
 const roundsBody = document.getElementById("rounds");
 const totalsRow = document.getElementById("totals");
 const leaderboardDiv = document.getElementById("leaderboard");
 
-function init() {
+/* ---------- SETUP ---------- */
+
+function addPlayerInput() {
+  const input = document.createElement("input");
+  input.placeholder = "Player name";
+  playerInputsDiv.appendChild(input);
+}
+
+function startGame() {
+  players = [];
+  document.querySelectorAll("#playerInputs input").forEach(inp => {
+    if (inp.value.trim()) players.push(inp.value.trim());
+  });
+
+  if (players.length < 2) {
+    alert("Add at least 2 players");
+    return;
+  }
+
+  setupDiv.style.display = "none";
+  gameDiv.style.display = "block";
+
   renderHeader();
   renderTotals();
 }
 
+/* ---------- GAME UI ---------- */
+
 function renderHeader() {
   tableHead.innerHTML = "<th>Round</th>";
-  players.forEach((p, i) => {
-    tableHead.innerHTML += `
-      <th>
-        <input value="${p}" onchange="renamePlayer(${i}, this.value)">
-      </th>`;
+  players.forEach(p => {
+    tableHead.innerHTML += `<th>${p}</th>`;
   });
 }
 
@@ -26,32 +49,6 @@ function renderTotals() {
   totalsRow.innerHTML = "<th>TOTAL</th>";
   players.forEach(p => {
     totalsRow.innerHTML += `<td id="total-${p}">0</td>`;
-  });
-}
-
-function renamePlayer(index, name) {
-  players[index] = name;
-  updateTotals();
-}
-
-function addPlayer() {
-  if (finished) return;
-
-  const name = `Player ${players.length + 1}`;
-  players.push(name);
-
-  renderHeader();
-  renderTotals();
-
-  document.querySelectorAll("#rounds tr").forEach(tr => {
-    const td = document.createElement("td");
-    const input = document.createElement("input");
-    input.type = "number";
-    input.min = 0;
-    input.value = 0;
-    input.oninput = updateTotals;
-    td.appendChild(input);
-    tr.appendChild(td);
   });
 }
 
@@ -87,7 +84,7 @@ function updateTotals() {
 
 function finishGame() {
   finished = true;
-  document.querySelectorAll("input").forEach(i => i.disabled = true);
+  document.querySelectorAll("#rounds input").forEach(i => i.disabled = true);
   showLeaderboard();
 }
 
@@ -105,13 +102,17 @@ function showLeaderboard() {
   });
 }
 
+/* ---------- RESET ---------- */
+
 function resetGame() {
+  players = [];
   finished = false;
+
   roundsBody.innerHTML = "";
   leaderboardDiv.innerHTML = "";
-  document.querySelectorAll("input").forEach(i => i.disabled = false);
-  renderHeader();
-  renderTotals();
+  playerInputsDiv.innerHTML = "";
+
+  gameDiv.style.display = "none";
+  setupDiv.style.display = "block";
 }
 
-init();
