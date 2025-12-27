@@ -4,7 +4,39 @@
   <title>UNO Scoreboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<<h1>UNO Scoreboard</h1>
+
+<!-- SETUP SCREEN -->
+<div id="setup">
+  <h2>Enter Player Names</h2>
+  <div id="playerInputs"></div>
+  <button onclick="addPlayerInput()">Add Player</button>
+  <button onclick="startGame()">Start Game</button>
+</div>
+
+<!-- GAME SCREEN -->
+<div id="game" style="display:none;">
+  <table id="scoreTable">
+    <thead>
+      <tr id="playerRow">
+        <th>Round</th>
+      </tr>
+    </thead>
+    <tbody id="rounds"></tbody>
+    <tfoot>
+      <tr id="totals">
+        <th>TOTAL</th>
+      </tr>
+    </tfoot>
+  </table>
+
+  <button onclick="addRound()">Add Round</button>
+  <button onclick="finishGame()">Finish Game</button>
+  <button onclick="resetGame()">Reset Game</button>
+
+  <div id="leaderboard"></div>
+</div>
+>
 
 <h1>UNO Scoreboard</h1>
 
