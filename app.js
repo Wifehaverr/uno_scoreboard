@@ -168,4 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetGame();
   });
 });
-
+if (IS_APP) {
+  const header = document.getElementById("webHeader");
+  if (header) header.style.display = "none";
+}

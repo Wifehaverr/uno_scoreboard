@@ -188,3 +188,27 @@ button:hover {
   font-weight: bold;
   opacity: 0.85;
 }
+.app-logo {
+  width: 120px;
+  height: auto;
+  margin-bottom: 8px;
+}
+/* ---------- WEB HEADER ---------- */
+#webHeader {
+  position: fixed;
+  top: 16px;
+  left: 775px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.nav-logo {
+  width: 36px;
+  height: 36px;
+}
+
+.nav-title {
+  font-weight: bold;
+}
